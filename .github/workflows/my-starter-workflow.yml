@@ -3,6 +3,14 @@ name: My Starter Workflow
 on:
   workflow_dispatch:
 
+call-reusable-workflow:
+  strategy:
+    matrix:
+      nodeversion: [14, 16, 18, 20]
+  uses: ./.github/workflows/reusable-workflow.yml
+  with:
+    node: ${{ matrix.nodeversion }}
+
 jobs:
   build:
     runs-on: ubuntu-latest

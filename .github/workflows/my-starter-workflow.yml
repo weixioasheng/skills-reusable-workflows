@@ -4,9 +4,12 @@ on:
   workflow_dispatch:
 
 call-reusable-workflow:
+  strategy:
+    matrix:
+      nodeversion: [14, 16, 18, 20]
   uses: ./.github/workflows/reusable-workflow.yml
   with:
-    node: 14
+    node: ${{ matrix.nodeversion }}
 
 jobs:
   build:
